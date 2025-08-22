@@ -1,10 +1,73 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
+/* Order
+positioning (display, position, z-index, top, right, flexbox, grid, ...)
+box model (margin, border, padding, width, height)
+typography (font-family, font-size, font-weight, line-height, color, text-align, ...)
+visual (background, box-shadow, border-radius, opacity, ...)
+interaction (cursor, pointer-events, ...)
+transition & animation (transition, transform, animation, ...)
+*/
+
+
 :root {
+    /* === Font Family === */
     --ff: 'Roboto Mono', sans-serif;
+
+    /* === Typography === */
+    /* Font Sizes */
+    --fs-regular: 1rem;
+
+    /* Font Weights */
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+
+    /* === Color Palette === */
+    --primary: #4d55cc;
+    --secondary: #211c84;
+    --accent: #B5A8D5;
+    --accent-hover: #F39C12;
+    --neutral-light: #ECF0F1;
+    --neutral-dark: #1e1e1e;
+    --text-light: #ffffff;
+    --text-dark: #000000;
+
+    /* === Spacing === */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+
+    /* === Border Radius === */
+    --br: 1rem;
+    --br-chip: 4rem;
+    --br-circle: 50%;
+
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
+    font-size: 100%;
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
     font-family: var(--ff);
+    font-size: var(--fs-regular);
+    font-weight: var(--fw-regular);
+    line-height: 1.5;
+    background-color: var(--neutral-light);
 }
 
