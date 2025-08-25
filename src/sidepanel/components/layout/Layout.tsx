@@ -1,0 +1,20 @@
+import styles from './Layout.module.css';
+import { AddPromptButton } from '@components/footer/AddPromptButton';
+
+export const Layout = () => {
+    return (
+        <div className={ styles.container }>
+            <div className={ styles.header }>
+                // SearchBar, FilterButtons, ChipItems go here
+            </div>
+
+            <div className={ styles.content }>
+                // The PromptCards go here                  
+            </div>
+
+            <div className={ styles.footer }>
+                <AddPromptButton />
+            </div> 
+        </div>
+    )
+}

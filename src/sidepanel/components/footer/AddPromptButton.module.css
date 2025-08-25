@@ -1,0 +1,9 @@
+.add-button {
+    width: 100%;
+    height: 3rem;
+    border-radius: var(--br);
+    background-color: var(--primary);
+    color: var(--text-light);
+    font-size: var(--fs-large);
+    font-weight: var(--fw-bold);
+}

@@ -1,8 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve('src'),
+      '@components': path.resolve('src/sidepanel/components')
+    }
+  },
   build: {
     outDir: 'dist',
     emptyOutDir: true, // Clear dist/ before each build
