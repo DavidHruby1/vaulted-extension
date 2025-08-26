@@ -31,9 +31,10 @@ transition & animation (transition, transform, animation, ...)
 
     /* === Color Palette === */
     --primary: #4d55cc;
+    --prompt-btn-hover: rgba(77, 85, 204, 0.95);
     --secondary: #211c84;
     --accent: #B5A8D5;
-    --accent-hover: #F39C12;
+    --accent-hover: #fbb34f;
     --neutral-light: #ECF0F1;
     --neutral-dark: #1e1e1e;
     --text-light: #ffffff;
