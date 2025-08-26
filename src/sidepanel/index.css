@@ -17,6 +17,7 @@ transition & animation (transition, transform, animation, ...)
     /* === Typography === */
     /* Font Sizes */
     --fs-regular: 1rem;
+    --fs-medium: 1.5rem;
     --fs-large: 2rem;
 
     /* Font Weights */
@@ -44,7 +45,7 @@ transition & animation (transition, transform, animation, ...)
     --spacing-xl: 2rem;
 
     /* === Border Radius === */
-    --br: 1rem;
+    --br: 0.5rem;
     --br-chip: 4rem;
     --br-circle: 50%;
 

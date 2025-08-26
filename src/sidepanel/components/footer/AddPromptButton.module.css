@@ -4,6 +4,9 @@
     border-radius: var(--br);
     background-color: var(--primary);
     color: var(--text-light);
-    font-size: var(--fs-large);
+    font-size: var(--fs-medium);
     font-weight: var(--fw-bold);
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
