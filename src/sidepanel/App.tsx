@@ -6,7 +6,7 @@ function App() {
     <div>
       <Layout />
     </div>
-  )
+  );
 }
 
 export default App
