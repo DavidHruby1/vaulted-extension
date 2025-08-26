@@ -1,0 +1,10 @@
+.search-bar {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    font-size: var(--fs-semi-medium);
+    font-weight: var(--fw-medium);
+    color: var(--text-grey);
+    background: white;
+    border: 3px solid var(--neutral-dark);
+    border-radius: var(--br); 
+}

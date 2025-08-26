@@ -7,11 +7,11 @@ export const Layout = () => {
         <div className={ styles.container }>
             <div className={ styles.header }>
                 <SearchBar />
-                // SearchBar, FilterButtons, ChipItems go here
+                {/* SearchBar, FilterButtons, ChipItems go here */}
             </div>
 
             <div className={ styles.content }>
-                // The PromptCards go here                  
+                {/* The PromptCards go here */}                  
             </div>
 
             <div className={ styles.footer }>
