@@ -2,7 +2,7 @@
     width: 100%;
     padding: 0.75rem;
     font-size: var(--fs-semi-medium);
-    font-weight: var(--fw-semibold);
+    font-weight: var(--fw-regular);
     color: var(--text-dark);
     background: white;
     border: 2px solid var(--neutral-dark);
@@ -12,6 +12,7 @@
 }
 
 .search-bar::placeholder {
+    font-weight: var(--fw-semibold);
     color: var(--text-grey);
 }
 
