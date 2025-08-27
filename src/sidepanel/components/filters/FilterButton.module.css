@@ -1,5 +1,6 @@
 .filter-btn {
-    padding: var(--spacing-xs);
+    padding-block: var(--spacing-xs);
+    padding-inline: var(--spacing-sm);
     border-radius: var(--br);
     border: none;
     outline: none;
@@ -10,7 +11,7 @@
 }
 
 .filter-btn svg {
-    padding-right: var(--spacing-sm);
+    margin-right: var(--spacing-sm);
 }
 
 .text {
