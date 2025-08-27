@@ -1,0 +1,23 @@
+.filter-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: var(--spacing-xs);
+    padding-inline: var(--spacing-sm);
+    border-radius: var(--br);
+    border: none;
+    outline: none;
+}
+
+.filter-btn:hover {
+    cursor: pointer;
+}
+
+.filter-btn svg {
+    margin-right: var(--spacing-sm);
+}
+
+.text {
+    font-size: var(--fs-regular);
+    font-weight: var(--fw-medium);
+}

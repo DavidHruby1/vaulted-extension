@@ -1,0 +1,6 @@
+.chips-container {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-sm);
+    margin-bottom: 0.75rem;
+}

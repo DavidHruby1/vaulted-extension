@@ -1,0 +1,22 @@
+.search-bar {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: var(--fs-semi-medium);
+    font-weight: var(--fw-regular);
+    color: var(--text-dark);
+    background: white;
+    border: 2px solid var(--neutral-dark);
+    border-radius: var(--br); 
+    transition: box-shadow 300ms ease, outline 200ms ease;
+    margin-top: 1rem;
+}
+
+.search-bar::placeholder {
+    font-weight: var(--fw-semibold);
+    color: var(--text-grey);
+}
+
+.search-bar:focus {
+    outline: 3px solid var(--accent-hover);
+    outline-offset: 3px;
+}

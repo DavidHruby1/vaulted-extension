@@ -1,0 +1,15 @@
+.sort-toggler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--filter-btn-bg);
+    border-radius: var(--br-circle);
+    border: none;
+    outline: none;
+}
+
+.sort-toggler:hover {
+    cursor: pointer;
+}
