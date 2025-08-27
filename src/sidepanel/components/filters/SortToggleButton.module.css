@@ -1,9 +1,9 @@
 .sort-toggler {
-    width: 2rem;
-    height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 2rem;
+    height: 2rem;
     background-color: var(--filter-btn-bg);
     border-radius: var(--br-circle);
     border: none;
