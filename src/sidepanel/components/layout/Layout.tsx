@@ -2,6 +2,7 @@ import { SearchBar } from '../search/SearchBar';
 import styles from './Layout.module.css';
 import { AddPromptButton } from '@components/footer/AddPromptButton';
 import { FilterContainer } from '@components/filters/FilterContainer';
+import { FilterChipsContainer } from '@components/chips/FilterChipsContainer';
 
 export const Layout = () => {
     return (
@@ -9,7 +10,7 @@ export const Layout = () => {
             <div className={ styles.header }>
                 <SearchBar />
                 <FilterContainer />
-                {/* SearchBar, FilterButtons, ChipItems go here */}
+                <FilterChipsContainer />
             </div>
 
             <div className={ styles.content }>
