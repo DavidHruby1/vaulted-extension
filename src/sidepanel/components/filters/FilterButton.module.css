@@ -1,4 +1,7 @@
 .filter-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-block: var(--spacing-xs);
     padding-inline: var(--spacing-sm);
     border-radius: var(--br);

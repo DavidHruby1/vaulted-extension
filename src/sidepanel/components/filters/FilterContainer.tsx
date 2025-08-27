@@ -9,7 +9,7 @@ export const FilterContainer = () => {
         <div className={ styles['filter-container'] }>
             <div>
                 <FilterButton 
-                    text="Filter"
+                    text="Clear All"
                     bgColor="var(--accent)"
                 />
             </div>
