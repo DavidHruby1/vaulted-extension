@@ -1,7 +1,7 @@
 import { SearchBar } from '../search/SearchBar';
 import styles from './Layout.module.css';
 import { AddPromptButton } from '@components/footer/AddPromptButton';
-import { FilterContainer } from '@components/filter/FilterContainer';
+import { FilterContainer } from '@components/filters/FilterContainer';
 
 export const Layout = () => {
     return (
