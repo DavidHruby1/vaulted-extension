@@ -1,4 +1,4 @@
-.filter-button {
+.filter-btn {
     padding: var(--spacing-xs);
     border-radius: var(--br);
     border: none;
@@ -9,8 +9,11 @@
     cursor: pointer;
 }
 
+.filter-btn svg {
+    padding-right: var(--spacing-sm);
+}
+
 .text {
-    padding-left: var(--spacing-sm);
     font-size: var(--fs-regular);
     font-weight: var(--fw-medium);
 }

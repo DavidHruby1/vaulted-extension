@@ -1,4 +1,4 @@
-import styles from './FilterButton.module.css';
+import styles from './SortToggleButton.module.css';
 import { ChevronDown } from 'lucide-react';
 
 export const SortToggleButton = () => {
