@@ -1,0 +1,11 @@
+.sort-toggler {
+    padding: var(--spacing-xs);
+    background-color: var(--filter-btn-bg);
+    border-radius: var(--br-circle);
+    border: none;
+    outline: none;
+}
+
+.sort-toggler:hover {
+    cursor: pointer;
+}

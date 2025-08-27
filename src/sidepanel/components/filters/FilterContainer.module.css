@@ -1,0 +1,11 @@
+.filter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.right {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-sm);
+}
