@@ -1,0 +1,16 @@
+.filter-button {
+    padding: var(--spacing-xs);
+    border-radius: var(--br);
+    border: none;
+    outline: none;
+}
+
+.filter-btn:hover {
+    cursor: pointer;
+}
+
+.text {
+    padding-left: var(--spacing-sm);
+    font-size: var(--fs-regular);
+    font-weight: var(--fw-medium);
+}

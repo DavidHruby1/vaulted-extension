@@ -1,12 +1,14 @@
 import { SearchBar } from '../search/SearchBar';
 import styles from './Layout.module.css';
 import { AddPromptButton } from '@components/footer/AddPromptButton';
+import { FilterContainer } from '@components/filter/FilterContainer';
 
 export const Layout = () => {
     return (
         <div className={ styles.container }>
             <div className={ styles.header }>
                 <SearchBar />
+                <FilterContainer />
                 {/* SearchBar, FilterButtons, ChipItems go here */}
             </div>
 

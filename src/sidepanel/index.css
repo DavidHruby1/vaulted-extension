@@ -31,7 +31,6 @@ transition & animation (transition, transform, animation, ...)
 
     /* === Color Palette === */
     --primary: #4d55cc;
-    --prompt-btn-hover: rgba(77, 85, 204, 0.95);
     --secondary: #211c84;
     --accent: #B5A8D5;
     --accent-hover: #fbb34f;
@@ -40,6 +39,8 @@ transition & animation (transition, transform, animation, ...)
     --text-light: #ffffff;
     --text-dark: #000000;
     --text-grey: #cccccc;
+    --prompt-btn-hover: rgba(77, 85, 204, 0.95);
+    --filter-btn-bg: rgba(0, 0, 0, 0.1);
 
     /* === Spacing === */
     --spacing-xs: 0.25rem;
