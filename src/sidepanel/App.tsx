@@ -6,7 +6,10 @@ import { AddPromptModal } from './components/modals/AddPromptModal';
 function App() {
     return (
         <div>
-            <Layout />
+            <Layout
+                {/* prompts={ prompts } */}
+                onAddClick={ () => setIsModalOpen(true) }
+            />
             <AddPromptModal
                 isOpen={ isModalOpen }
                 onClose={ () => setIsModalOpen(false) }
