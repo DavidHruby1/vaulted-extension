@@ -2,5 +2,6 @@
     display: flex;
     flex-direction: row;
     gap: var(--spacing-sm);
-    margin-bottom: 0.75rem;
+    padding-block: var(--spacing-sm-75);
+    margin-bottom: var(--spacing-sm-75);
 }
