@@ -58,7 +58,7 @@ export const AddPromptModal = ({ isOpen, onClose }: PromptModalProps) => {
         <div className={ styles.overlay }>
             <div className={ styles.modal }>
                 <button className={ styles['close-modal-btn'] } onClick={ onClose }>
-                    <X size={16} />
+                    <X size={16} strokeWidth={3} />
                 </button> 
 
                 <form>
