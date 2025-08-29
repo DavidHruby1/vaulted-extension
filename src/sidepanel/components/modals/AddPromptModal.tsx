@@ -55,6 +55,10 @@ export const AddPromptModal = ({ isOpen, onClose, onAddPrompt }: PromptModalProp
                 <button className={ styles['close-modal-btn'] onClick={ onClose }}>
                     <X size={16} />
                 </button> 
+
+                <form>
+
+                </form>
             </div>
         </div>
     );

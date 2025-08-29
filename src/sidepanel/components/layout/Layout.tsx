@@ -4,7 +4,12 @@ import { AddPromptButton } from '@components/footer/AddPromptButton';
 import { FilterContainer } from '@components/filters/FilterContainer';
 import { FilterChipsContainer } from '@components/chips/FilterChipsContainer';
 
-export const Layout = () => {
+interface LayoutProps {
+    // prompts: Prompt[];
+    onAddClick: () => void;
+}
+
+export const Layout = ({ onAddClick }: LayoutProps) => {
     return (
         <div className={ styles.container }>
             <div className={ styles.header }>
@@ -18,7 +23,7 @@ export const Layout = () => {
             </div>
 
             <div className={ styles.footer }>
-                <AddPromptButton />
+                <AddPromptButton onClick={ onAddClick } />
             </div> 
         </div>
     )
