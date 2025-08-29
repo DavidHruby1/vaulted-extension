@@ -61,8 +61,40 @@ export const AddPromptModal = ({ isOpen, onClose }: PromptModalProps) => {
                     <X size={16} strokeWidth={3} />
                 </button> 
 
-                <form>
+                <form className={ styles['add-prompt-form'] }> {/* onSubmit goes here */}
                     {/* input goes here */}
+                    <label className={ styles['add-prompt-label'] }>
+                        Title
+                        <input 
+                            className={ styles['add-prompt-input'] }
+                            type="text"
+                            //value={ title }
+                            //onChange={ e => setTitle(e.target.value) }
+                        />
+                    </label>
+
+                    <label className={ styles['add-prompt-label'] }>
+                        Tag
+                        <input 
+                            className={ styles['add-prompt-input'] }
+                            type="text"
+                            //value={ tagInput }
+                            //onChange={ e => setTitle(e.target.value) }
+                        />
+                    </label>
+
+                    <textarea
+                        className={ styles['add-prompt-textarea'] }
+                        rows={6}
+                        //value={ text }
+                        // onChange={ e => setText(e.target.value) }
+                        placeholder='Enter your prompt here...'
+                        required
+                    />
+
+                    <button type="submit" className={ styles['submit-btn'] }>
+                        <span className={ styles['submit-text'] }>Submit</span>
+                    </button>
                 </form>
             </div>
         </div>

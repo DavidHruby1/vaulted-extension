@@ -8,7 +8,6 @@
     border: 2px solid var(--neutral-dark);
     border-radius: var(--br); 
     transition: box-shadow 300ms ease, outline 200ms ease;
-    margin-top: 1rem;
 }
 
 .search-bar::placeholder {
