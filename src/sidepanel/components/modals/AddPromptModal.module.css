@@ -30,6 +30,8 @@
     width: 32px;
     height: 32px;
     background-color: var(--close-btn-bg);
+    border: none;
+    outline: none;
     border-bottom: 4px solid var(--close-btn-border);
     border-radius: 4px;
 }

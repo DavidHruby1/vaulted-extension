@@ -1,13 +1,14 @@
-import { useState, FormEvent } from 'react';
+//import { useState } from 'react';
+//import type { FormEvent } from 'react';
 import styles from './AddPromptModal.module.css';
 import { X } from 'lucide-react';
 
 interface PromptModalProps {
     isOpen: boolean,
     onClose: () => void,
-    onAddPrompt: (data: { title: string, tags: string[], text: string}) => void;
+    // onAddPrompt: (data: { title: string, tags: string[], text: string}) => void;
 }
-
+/*
 const formatTags = (tags: string[]): string[] => {
     return Array.from(new Set(
         tags.map(tag => {
@@ -18,18 +19,21 @@ const formatTags = (tags: string[]): string[] => {
             }
             
             return `#${cleanTag.charAt(0).toUpperCase() + cleanTag.slice(1)}`;
-        });
+        })
     ));
 };
-
-export const AddPromptModal = ({ isOpen, onClose, onAddPrompt }: PromptModalProps) => {
+*/
+// onAddPrompt will be added after testing the modal UI
+export const AddPromptModal = ({ isOpen, onClose }: PromptModalProps) => {
+    /*
     const [title, setTitle] = useState('');
     const [tagInput, setTagInput] = useState('');
     const [text, setText] = useState('');
-
+    */
     if (!isOpen) return null;
 
-    handleAddPrompt = (e: FormEvent) => {
+    /*
+    const handleAddPrompt = (e: FormEvent) => {
         e.preventDefault();
 
         const tags = formatTags(
@@ -40,7 +44,7 @@ export const AddPromptModal = ({ isOpen, onClose, onAddPrompt }: PromptModalProp
         );
 
         // Calls the function that adds the prompt to the PromptsContainer - passed from the parent
-        onAddPrompt( {title, tags, text} );
+        // onAddPrompt( {title, tags, text} );
 
         setTitle('');
         setTagInput('');
@@ -48,17 +52,19 @@ export const AddPromptModal = ({ isOpen, onClose, onAddPrompt }: PromptModalProp
 
         onClose();
     };
+    */
 
     return (
         <div className={ styles.overlay }>
             <div className={ styles.modal }>
-                <button className={ styles['close-modal-btn'] onClick={ onClose }}>
+                <button className={ styles['close-modal-btn'] } onClick={ onClose }>
                     <X size={16} />
                 </button> 
 
                 <form>
-
+                    {/* input goes here */}
                 </form>
             </div>
         </div>
     );
+};

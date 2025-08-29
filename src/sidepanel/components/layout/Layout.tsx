@@ -23,7 +23,7 @@ export const Layout = ({ onAddClick }: LayoutProps) => {
             </div>
 
             <div className={ styles.footer }>
-                <AddPromptButton onClick={ onAddClick } />
+                <AddPromptButton onAddClick={ onAddClick } />
             </div> 
         </div>
     )
