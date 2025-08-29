@@ -6,9 +6,9 @@ import { X } from 'lucide-react';
 interface PromptModalProps {
     isOpen: boolean,
     onClose: () => void,
-    // onAddPrompt: (data: { title: string, tags: string[], text: string}) => void;
+    onAddPrompt: (data: { title: string, tags: string[], text: string}) => void;
 }
-/*
+
 const formatTags = (tags: string[]): string[] => {
     return Array.from(new Set(
         tags.map(tag => {
@@ -22,17 +22,14 @@ const formatTags = (tags: string[]): string[] => {
         })
     ));
 };
-*/
-// onAddPrompt will be added after testing the modal UI
-export const AddPromptModal = ({ isOpen, onClose }: PromptModalProps) => {
-    /*
+
+export const AddPromptModal = ({ isOpen, onClose, onAddPrompt }: PromptModalProps) => {
     const [title, setTitle] = useState('');
     const [tagInput, setTagInput] = useState('');
     const [text, setText] = useState('');
-    */
+
     if (!isOpen) return null;
 
-    /*
     const handleAddPrompt = (e: FormEvent) => {
         e.preventDefault();
 
@@ -44,7 +41,7 @@ export const AddPromptModal = ({ isOpen, onClose }: PromptModalProps) => {
         );
 
         // Calls the function that adds the prompt to the PromptsContainer - passed from the parent
-        // onAddPrompt( {title, tags, text} );
+        onAddPrompt( {title, tags, text} );
 
         setTitle('');
         setTagInput('');
@@ -52,7 +49,6 @@ export const AddPromptModal = ({ isOpen, onClose }: PromptModalProps) => {
 
         onClose();
     };
-    */
 
     return (
         <div className={ styles.overlay }>
@@ -62,14 +58,13 @@ export const AddPromptModal = ({ isOpen, onClose }: PromptModalProps) => {
                 </button> 
 
                 <form className={ styles['add-prompt-form'] }> {/* onSubmit goes here */}
-                    {/* input goes here */}
                     <label className={ styles['add-prompt-label'] }>
                         Title
                         <input 
                             className={ styles['add-prompt-input'] }
                             type="text"
-                            //value={ title }
-                            //onChange={ e => setTitle(e.target.value) }
+                            value={ title }
+                            onChange={ e => setTitle(e.target.value) }
                         />
                     </label>
 
@@ -78,16 +73,16 @@ export const AddPromptModal = ({ isOpen, onClose }: PromptModalProps) => {
                         <input 
                             className={ styles['add-prompt-input'] }
                             type="text"
-                            //value={ tagInput }
-                            //onChange={ e => setTitle(e.target.value) }
+                            value={ tagInput }
+                            onChange={ e => setTitle(e.target.value) }
                         />
                     </label>
 
                     <textarea
                         className={ styles['add-prompt-textarea'] }
                         rows={6}
-                        //value={ text }
-                        // onChange={ e => setText(e.target.value) }
+                        value={ text }
+                        onChange={ e => setText(e.target.value) }
                         placeholder='Enter your prompt here...'
                         required
                     />

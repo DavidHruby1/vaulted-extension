@@ -16,7 +16,7 @@ function App() {
             <AddPromptModal
                 isOpen={ isModalOpen }
                 onClose={ () => setIsModalOpen(false) }
-                /* onAddPrompt={ handleAddPrompt } */
+                onAddPrompt={ handleAddPrompt }
             />
         </div>
     );
