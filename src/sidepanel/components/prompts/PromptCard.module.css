@@ -35,6 +35,7 @@
     margin-left: auto;
     display: flex;
     gap: var(--spacing-sm);
+    cursor: pointer;
 }
 
 .actions button {
