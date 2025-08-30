@@ -37,9 +37,6 @@
     outline: none;
     border-bottom: 3px solid var(--close-btn-border);
     border-radius: 6px;
-}
-
-.close-modal-btn:hover {
     cursor: pointer;
 }
 

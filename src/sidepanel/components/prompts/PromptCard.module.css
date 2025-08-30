@@ -7,6 +7,7 @@
     border: 3px solid var(--primary);
     border-radius: var(--br);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
 }
 
 .card:hover {
@@ -19,8 +20,7 @@
     height: 40px;
     padding: var(--spacing-sm);
     background-color: var(--secondary);
-    border-top-left-radius: var(--br);
-    border-top-right-radius: var(--br);
+    cursor: pointer;
 }
 
 .card-header h3 {
@@ -37,7 +37,13 @@
     gap: var(--spacing-sm);
 }
 
-.card-content {
+.actions button {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.card-body {
     width: 100%;
     height: calc(100% - 40px);
     padding: var(--spacing-sm);
