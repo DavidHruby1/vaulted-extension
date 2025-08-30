@@ -30,7 +30,7 @@ export const AddPromptModal = ({ isOpen, onClose, onAddPrompt }: PromptModalProp
 
     if (!isOpen) return null;
 
-    const handleAddPrompt = (e: FormEvent) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
         const tags = formatTags(
@@ -51,13 +51,13 @@ export const AddPromptModal = ({ isOpen, onClose, onAddPrompt }: PromptModalProp
     };
 
     return (
-        <div className={ styles.overlay }>
-            <div className={ styles.modal }>
+        <div className={ styles.overlay } onClick={ onClose }>
+            <div className={ styles.modal } onClick={ e => e.stopPropagation() }>
                 <button className={ styles['close-modal-btn'] } onClick={ onClose }>
                     <X size={16} strokeWidth={3} />
                 </button> 
 
-                <form className={ styles['add-prompt-form'] }> {/* onSubmit goes here */}
+                <form className={ styles['add-prompt-form'] } onSubmit={ handleSubmit }>
                     <label className={ styles['add-prompt-label'] }>
                         Title
                         <input 

@@ -5,12 +5,24 @@ import { AddPromptModal } from './components/modals/AddPromptModal';
 
 
 function App() {
+    const [prompts, setPrompts] = useState<Prompt[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleAddPrompt = (data: {title: string, tags: string[], text: string}) => {
+        const newPrompt: Prompt = {
+            ...data,
+            id: crypto.randomUUID(),
+            createdAt: Date.now(),
+            tokenCount: Math.ceil(data.text.length / 4) // Estimate for now - will be replaced with proper token counting function later
+        };
+
+        setPrompts(prevPrompts => [newPrompt, ...prevPrompts])
+    }
 
     return (
         <div>
             <Layout
-                /* prompts={ prompts } */
+                prompts={ prompts }
                 onAddClick={ () => setIsModalOpen(true) }
             />
             <AddPromptModal
