@@ -2,7 +2,7 @@
     min-width: 366px;
     width: 100%;
     max-width: 420px;
-    height: 200px;
+    height: 180px;
     padding: var(--spacing-sm);
     background-color: white;
     border: 3px solid var(--primary);
