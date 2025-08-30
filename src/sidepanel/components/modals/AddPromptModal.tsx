@@ -74,7 +74,7 @@ export const AddPromptModal = ({ isOpen, onClose, onAddPrompt }: PromptModalProp
                             className={ styles['add-prompt-input'] }
                             type="text"
                             value={ tagInput }
-                            onChange={ e => setTitle(e.target.value) }
+                            onChange={ e => setTagInput(e.target.value) }
                         />
                     </label>
 
