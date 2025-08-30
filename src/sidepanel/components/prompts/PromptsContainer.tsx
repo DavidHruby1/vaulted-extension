@@ -9,7 +9,13 @@ interface PromptContainerProps {
 export const PromptsContainer = () => {
     return (
         <div className={ styles.container }>
-            {/* The PromptCards go here */}
+            { prompts.length === 0 ? (
+                <p>No prompts yet. Add your first!</p>
+            ) : (
+                prompts.map(prompt => (
+                    <PromptCard key={ prompt.id } prompt={ prompt } />
+                ))
+            )}
         </div>
     );
 }
