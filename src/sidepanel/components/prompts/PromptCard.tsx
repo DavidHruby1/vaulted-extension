@@ -1,5 +1,5 @@
 import styles from './PromptCard.module.css';
-import { Prompt } from '@/shared/types';
+import type { Prompt } from '@/shared/types';
 import { Copy, Syringe, EllipsisVertical } from 'lucide-react';
 
 interface PromptCardProps {

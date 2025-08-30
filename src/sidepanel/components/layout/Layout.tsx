@@ -5,11 +5,11 @@ import { FilterContainer } from '@components/filters/FilterContainer';
 import { FilterChipsContainer } from '@components/chips/FilterChipsContainer';
 
 interface LayoutProps {
-    // prompts: Prompt[];
+    prompts: Prompt[];
     onAddClick: () => void;
 }
 
-export const Layout = ({ onAddClick }: LayoutProps) => {
+export const Layout = ({ prompts, onAddClick }: LayoutProps) => {
     return (
         <div className={ styles.container }>
             <div className={ styles.header }>
@@ -19,7 +19,7 @@ export const Layout = ({ onAddClick }: LayoutProps) => {
             </div>
 
             <div className={ styles.content }>
-                {/* The PromptCards go here */}                  
+                <PromptContainer prompts={ prompts } />
             </div>
 
             <div className={ styles.footer }>

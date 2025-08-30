@@ -2,6 +2,7 @@ import './index.css'
 import { useState } from 'react';
 import { Layout } from '@components/layout/Layout';
 import { AddPromptModal } from './components/modals/AddPromptModal';
+import type { Prompt } from '@/shared/types';
 
 
 function App() {

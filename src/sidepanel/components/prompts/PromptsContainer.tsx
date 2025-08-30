@@ -1,12 +1,12 @@
 import styles from './PromptSContainer.module.css';
-import { Prompt } from '@/shared/types';
+import type { Prompt } from '@/shared/types';
 import { PromptCard } from '@components/prompts/PromptCard';
 
 interface PromptContainerProps {
     prompts: Prompt[];
 }
 
-export const PromptsContainer = () => {
+export const PromptsContainer = ({ prompts }: PromptContainerProps) => {
     return (
         <div className={ styles.container }>
             { prompts.length === 0 ? (
