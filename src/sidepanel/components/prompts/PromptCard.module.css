@@ -1,0 +1,58 @@
+.card {
+    min-width: 366px;
+    width: 100%;
+    min-height: 180px;
+    background-color: white;
+    border: 3px solid var(--primary);
+    border-radius: var(--br);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+}
+
+.card:hover {
+    cursor: url('@/assets/expand.svg'), auto;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    padding-inline: var(--spacing-sm);
+    background-color: var(--secondary);
+}
+
+.card-header h3 {
+    color: var(--text-light);
+    cursor: pointer;
+}
+
+.card-header span {
+    color: var(--text-grey);
+    margin-left: var(--spacing-xs);
+}
+
+.actions {
+    margin-left: auto;
+    display: flex;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+}
+
+.actions button {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.actions button svg {
+    vertical-align: middle;
+}
+
+.card-body {
+    width: 100%;
+    height: calc(100% - 40px);
+    padding: var(--spacing-sm);
+    background-color: white;
+}

@@ -1,6 +1,7 @@
 .add-button {
     width: 100%;
     height: 3.375rem;
+    margin-top: var(--spacing-sm-75);
     border-radius: var(--br);
     background-color: var(--primary);
     color: var(--text-light);

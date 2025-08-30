@@ -3,8 +3,15 @@ import styles from './Layout.module.css';
 import { AddPromptButton } from '@components/footer/AddPromptButton';
 import { FilterContainer } from '@components/filters/FilterContainer';
 import { FilterChipsContainer } from '@components/chips/FilterChipsContainer';
+import { PromptsContainer } from '@components/prompts/PromptsContainer';
+import type { Prompt } from '@/shared/types';
 
-export const Layout = () => {
+interface LayoutProps {
+    prompts: Prompt[];
+    onAddClick: () => void;
+}
+
+export const Layout = ({ prompts, onAddClick }: LayoutProps) => {
     return (
         <div className={ styles.container }>
             <div className={ styles.header }>
@@ -14,11 +21,11 @@ export const Layout = () => {
             </div>
 
             <div className={ styles.content }>
-                {/* The PromptCards go here */}                  
+                <PromptsContainer prompts={ prompts } />
             </div>
 
             <div className={ styles.footer }>
-                <AddPromptButton />
+                <AddPromptButton onAddClick={ onAddClick } />
             </div> 
         </div>
     )
