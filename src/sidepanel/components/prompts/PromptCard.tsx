@@ -14,13 +14,13 @@ export const PromptCard = ({ prompt }: PromptCardProps) => {
                 <span>{ prompt.tokenCount }</span>
                 <div className={ styles.actions }>
                     <button>
-                        <Copy size={24} strokeWidth={2} />
+                        <Copy color="white" size={24} strokeWidth={2.25} />
                     </button>
                     <button>
-                        <Syringe size={24} strokeWidth={2} />
+                        <Syringe color="white" size={24} strokeWidth={2.25} />
                     </button>
                     <button>
-                        <EllipsisVertical size={24} strokeWidth={2} />
+                        <EllipsisVertical color="white" size={24} strokeWidth={2.25} />
                     </button>
                 </div>
             </div>
