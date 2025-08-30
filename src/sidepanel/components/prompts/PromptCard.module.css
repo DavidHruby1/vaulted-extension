@@ -47,6 +47,10 @@
     cursor: pointer;
 }
 
+.actions button svg {
+    vertical-align: middle;
+}
+
 .card-body {
     width: 100%;
     height: calc(100% - 40px);
