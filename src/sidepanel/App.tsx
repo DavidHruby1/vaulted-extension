@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Layout } from '@components/layout/Layout';
 import { AddPromptModal } from './components/modals/AddPromptModal';
 import type { Prompt } from '@/shared/types';
+import { getNextTitleNumber } from '@/shared/utils/getNextTitleNumber';
 
 
 function App() {
@@ -10,8 +11,14 @@ function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleAddPrompt = (data: {title: string, tags: string[], text: string}) => {
+        const finalTitle = data.title.trim() === ''
+            ? `Title ${getNextTitleNumber()}`
+            : data.title.trim();
+
         const newPrompt: Prompt = {
-            ...data,
+            title: finalTitle,
+            tags: data.tags,
+            text: data.text,
             id: crypto.randomUUID(),
             createdAt: Date.now(),
             tokenCount: Math.ceil(data.text.length / 4) // Estimate for now - will be replaced with proper token counting function later
