@@ -28,6 +28,14 @@ export const AddPromptModal = ({ isOpen, onClose, onAddPrompt }: PromptModalProp
     const [tagInput, setTagInput] = useState('');
     const [text, setText] = useState('');
 
+    useEffect(() => {
+        if (isOpen) {
+            setTitle('');
+            setTagInput('');
+            setText('');
+        }
+    }, [isOpen]);
+
     if (!isOpen) return null;
 
     const handleSubmit = (e: FormEvent) => {
