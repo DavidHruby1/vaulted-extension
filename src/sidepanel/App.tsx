@@ -12,7 +12,7 @@ function App() {
 
     const handleAddPrompt = (data: {title: string, tags: string[], text: string}) => {
         const finalTitle = data.title.trim() === ''
-            ? `Title ${getNextTitleNumber()}`
+            ? `Title ${getNextTitleNumber(prompts)}`
             : data.title.trim();
 
         const newPrompt: Prompt = {
