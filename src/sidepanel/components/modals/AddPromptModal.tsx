@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
 import styles from './AddPromptModal.module.css';
 import { X } from 'lucide-react';
+import { formatTags } from '@/shared/utils/formatTags';
 
 interface PromptModalProps {
     isOpen: boolean,
