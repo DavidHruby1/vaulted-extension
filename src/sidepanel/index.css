@@ -16,6 +16,7 @@ transition & animation (transition, transform, animation, ...)
 
     /* === Typography === */
     /* Font Sizes */
+    --fs-small: 0.75rem;
     --fs-regular: 1rem;
     --fs-semi-medium: 1.25rem;
     --fs-medium: 1.5rem;
