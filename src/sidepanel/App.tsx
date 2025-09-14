@@ -4,7 +4,7 @@ import { Layout } from '@components/layout/Layout';
 import { AddPromptModal } from './components/modals/AddPromptModal';
 import type { Prompt } from '@/shared/types';
 import { getNextTitleNumber } from '@/shared/utils/getNextTitleNumber';
-
+import { capitalizeTitle } from '@/shared/utils/cappitalizeTitle';
 
 function App() {
     const [prompts, setPrompts] = useState<Prompt[]>([]);
@@ -12,8 +12,8 @@ function App() {
 
     const handleAddPrompt = (data: {title: string, tags: string[], text: string}) => {
         const finalTitle = data.title.trim() === ''
-            ? `Title ${getNextTitleNumber(prompts)}`
-            : data.title.trim();
+            ? `Title_${getNextTitleNumber(prompts)}`
+            : capitalizeTitle(data.title.trim());
 
         const newPrompt: Prompt = {
             title: finalTitle,

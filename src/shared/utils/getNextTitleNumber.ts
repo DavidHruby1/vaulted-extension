@@ -1,9 +1,9 @@
 import type { Prompt } from '@/shared/types';
 
-export const getNextTitleNumber = (prompts: Prompt[]) => {
-    const titleRegex = /^Title (\d+)$/;
+export const getNextTitleNumber = (prompts: Prompt[]): number => {
+    const titleRegex: RegExp = /^Title (\d+)$/;
 
-    const titleNumbers = prompts
+    const titleNumbers: number[] = prompts
         .map(prompt => {
             const match = prompt.title.match(titleRegex);
             return match ? parseInt(match[1], 10) : null;
@@ -14,6 +14,6 @@ export const getNextTitleNumber = (prompts: Prompt[]) => {
         return 1;
     }
 
-    const maxNumber = Math.max(...titleNumbers);
+    const maxNumber: number = Math.max(...titleNumbers);
     return maxNumber + 1; 
 }
