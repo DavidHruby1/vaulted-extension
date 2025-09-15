@@ -4,7 +4,7 @@ import { Layout } from '@components/layout/Layout';
 import { AddPromptModal } from './components/modals/AddPromptModal';
 import type { Prompt } from '@/shared/types';
 import { getNextTitleNumber } from '@/shared/utils/getNextTitleNumber';
-import { capitalizeTitle } from '@/shared/utils/cappitalizeTitle';
+import { capitalizeTitle } from '@/shared/utils/capitalizeTitle';
 
 function App() {
     const [prompts, setPrompts] = useState<Prompt[]>([]);

@@ -1,19 +1,19 @@
 import styles from './Title.module.css';
 
-interface TitleProps = {
+interface TitleProps {
     title: string,
-    maxLength: number
+    maxLength: number;
 }
 
 export const Title = ({ title, maxLength }: TitleProps) => {
     const isTooLong: boolean = title.length > maxLength;
 
-    const displayedTitle = isLong
+    const displayedTitle = isTooLong
         ? `${title.slice(0, maxLength + 1)}...`
         : title;
 
     const wrapperClasses = `
-        ${styles['title-container']}${!isLong ? styles.hidden : ''}
+        ${styles['title-container']}${!isTooLong ? styles.hidden : ''}
     `;
 
     return (
