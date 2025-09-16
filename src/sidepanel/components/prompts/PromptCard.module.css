@@ -1,6 +1,5 @@
 .card {
     min-width: 366px;
-    width: 100%;
     min-height: 180px;
     background-color: white;
     border: 3px solid var(--primary);
@@ -10,7 +9,7 @@
 }
 
 .card:hover {
-    cursor: url('@/assets/expand.svg'), auto;
+    cursor: pointer; 
 }
 
 .card-header {
@@ -25,11 +24,6 @@
   overflow: hidden;
 }
 
-.card-header h3 {
-    color: var(--text-light);
-    cursor: pointer;
-}
-
 .tokens {
     font-size: var(--fs-small);
     color: var(--text-grey);
@@ -41,7 +35,6 @@
     margin-left: auto;
     flex-shrink: 0;
     gap: var(--spacing-sm);
-    cursor: pointer;
 }
 
 .actions button {
@@ -63,16 +56,16 @@
 }
 
 .title-container {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    min-width: 0;
 }
 
 .title-container h3 {
-  white-space: nowrap;
-  overflow: hidden;
-  color: var(--text-light);
-  cursor: pointer;
-  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: var(--text-light);
+    cursor: pointer;
+    text-overflow: ellipsis;
 }
