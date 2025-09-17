@@ -24,6 +24,10 @@
   overflow: hidden;
 }
 
+.card-text {
+    white-space: pre-wrap;
+}
+
 .tokens {
     font-size: var(--fs-small);
     color: var(--text-grey);
