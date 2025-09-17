@@ -10,10 +10,12 @@ export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps)
     const [text, setText] = useState(displayedTitle);
     const [isTooLong, setIsTooLong] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
-    const [inputWidth, setInputWidth] = useState('auto');
     const titleRef = useRef<HTMLHeadingElement>(null);
     const debounceRef = useRef<number | null>(null);
-    const measurerRef = useRef<HTMLSpanElement>(null);
+
+    useEffect(() => {
+        setText(displayedTitle);
+    }, [displayedTitle]);
 
     useEffect(() => {
         const promptTitle = titleRef.current;
@@ -39,18 +41,20 @@ export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps)
         };
     }, [displayedTitle]);
 
-    useEffect(() => {
-        if (isEditing && measurerRef.current) {
-            setInputWidth(`${measurerRef.current.offsetWidth}px`);
-        }
-    }, [isEditing, text]);
-
     const finishEditing = () => {
         onTitleChange(text.trim());
         setIsEditing(false);
     };
 
     const handleTitleEdit = () => setIsEditing(!isEditing);
+
+    const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newText = e.target.value;
+
+        if (newText.length < 40) {
+            setText(newText);
+        }
+    };
 
     const handleBlur = () => finishEditing();
 
@@ -60,21 +64,16 @@ export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps)
 
     return (
         <>
-            { isEditing && (
-                <span ref={measurerRef} className={styles['text-measurer']}>
-                    {text}
-                </span>
-            )}
             { isEditing ? (
                 <input
                     className={ styles['title-input'] }
                     type="text"
                     value={ text }
-                    onChange={ (e) => setText(e.target.value) }
+                    onChange={ handleTextChange }
                     onBlur={ handleBlur }
                     onKeyDown={ handleKeyDown }
+                    spellCheck={ false }
                     autoFocus
-                    style={{ width: inputWidth }}
                 />
             ) : (
                 <h3

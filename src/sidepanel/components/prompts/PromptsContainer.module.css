@@ -15,7 +15,7 @@
 @media (min-width: 756px) {
     .container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(366px, 1fr));
+        grid-template-columns: repeat(2, minmax(366px, 1fr));
         align-items: flex-start;
         align-content: flex-start;
     }

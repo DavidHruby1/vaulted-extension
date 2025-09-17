@@ -1,5 +1,5 @@
 .prompt-title {
-    font-size: 1rem;
+    font-size: var(--fs-regular);
     line-height: 1.5;
     white-space: nowrap;
     overflow: hidden;
@@ -9,25 +9,16 @@
 }
 
 .title-input {
-    font-size: 1rem;
+    max-width: 100%;
+    field-sizing: content;
+    min-width: 0;
+    font-size: var(--fs-regular);
+    font-weight: var(--fw-bold);
     line-height: 1.5;
     color: var(--text-light);
     background: transparent;
     border: none;
     border-bottom: 2px solid var(--neutral-light);
     outline: none;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-.text-measurer {
-    position: absolute;
-    visibility: hidden;
-    height: auto;
-    width: auto;
-    font-size: 1rem;
-    line-height: 1.5;
-    white-space: pre;
-    padding-inline: 4px;
     box-sizing: border-box;
 }
