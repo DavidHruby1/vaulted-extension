@@ -1,7 +1,7 @@
 import type { Prompt } from '@/shared/types';
 
 export const getNextTitleNumber = (prompts: Prompt[]): number => {
-    const titleRegex: RegExp = /^Title (\d+)$/;
+    const titleRegex: RegExp = /^Title_(\d+)$/;
 
     const titleNumbers: number[] = prompts
         .map(prompt => {

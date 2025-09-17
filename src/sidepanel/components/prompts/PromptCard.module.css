@@ -65,11 +65,3 @@
     gap: var(--spacing-sm);
     min-width: 0;
 }
-
-.title-container h3 {
-    white-space: nowrap;
-    overflow: hidden;
-    color: var(--text-light);
-    cursor: pointer;
-    text-overflow: ellipsis;
-}

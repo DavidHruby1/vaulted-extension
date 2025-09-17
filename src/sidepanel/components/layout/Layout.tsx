@@ -8,10 +8,12 @@ import type { Prompt } from '@/shared/types';
 
 interface LayoutProps {
     prompts: Prompt[];
-    onAddClick: () => void;
+    onAddClick: () => void,
+    onUpdatePrompt: (id: string, updates: Partial<Prompt>) => void,
+    nextTitleNumber: number;
 }
 
-export const Layout = ({ prompts, onAddClick }: LayoutProps) => {
+export const Layout = ({ prompts, onAddClick, onUpdatePrompt, nextTitleNumber }: LayoutProps) => {
     return (
         <div className={ styles.container }>
             <div className={ styles.header }>
@@ -21,7 +23,11 @@ export const Layout = ({ prompts, onAddClick }: LayoutProps) => {
             </div>
 
             <div className={ styles.content }>
-                <PromptsContainer prompts={ prompts } />
+                <PromptsContainer
+                    prompts={ prompts }
+                    onUpdatePrompt={ onUpdatePrompt }
+                    nextTitleNumber={ nextTitleNumber }
+                />
             </div>
 
             <div className={ styles.footer }>

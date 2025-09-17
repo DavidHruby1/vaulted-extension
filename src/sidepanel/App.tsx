@@ -10,6 +10,20 @@ function App() {
     const [prompts, setPrompts] = useState<Prompt[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const handleUpdatePrompt = (id: string, updates: Partial<Prompt>) => {
+        setPrompts(prevPrompts => {
+            if (updates.title !== undefined && updates.title.trim() === '') {
+                const otherPrompts = prevPrompts.filter(p => p.id !== id);
+                const newTitleNumber = getNextTitleNumber(otherPrompts);
+                updates.title = `Title_${newTitleNumber}`;
+            }
+
+            return prevPrompts.map(p => 
+                p.id === id ? { ...p, ...updates } : p
+            );
+        });
+    };
+
     const handleAddPrompt = (data: {title: string, tags: string[], text: string}) => {
         const finalTitle = data.title.trim() === ''
             ? `Title_${getNextTitleNumber(prompts)}`
@@ -32,6 +46,8 @@ function App() {
             <Layout
                 prompts={ prompts }
                 onAddClick={ () => setIsModalOpen(true) }
+                onUpdatePrompt={ handleUpdatePrompt }
+                nextTitleNumber={ getNextTitleNumber(prompts) }
             />
             <AddPromptModal
                 isOpen={ isModalOpen }

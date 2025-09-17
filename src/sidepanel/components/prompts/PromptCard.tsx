@@ -1,55 +1,28 @@
-import { useState, useEffect, useRef } from 'react';
 import styles from './PromptCard.module.css';
 import type { Prompt } from '@/shared/types';
 import { Copy, Syringe, EllipsisVertical } from 'lucide-react';
+import { PromptTitle } from '@components/prompts/PromptTitle';
 
 interface PromptCardProps {
     prompt: Prompt;
+    onUpdatePrompt: (id: string, updates: Partial<Prompt>) => void,
+    nextTitleNumber: number;
 }
 
-export const PromptCard = ({ prompt }: PromptCardProps) => {
-    const [isTooLong, setIsTooLong] = useState(false);
-    const titleRef = useRef<HTMLHeadingElement>(null);
-    const timeoutRef = useRef<number | null>(null);
+export const PromptCard = ({ prompt, onUpdatePrompt }: PromptCardProps) => {
 
-    useEffect(() =>{
-        const promptTitle = titleRef.current;
-        if (!promptTitle) return;
-
-        const checkOverflow = () => {
-            const isOverflowing = promptTitle.scrollWidth > promptTitle.clientWidth;
-            setIsTooLong(isOverflowing);
-        };
-
-        checkOverflow();
-
-        const handleResize = () => {
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current);
-            }
-            timeoutRef.current = window.setTimeout(checkOverflow, 200);
-        }
-
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("resize", handleResize);
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current);
-            }
-        };
-    }, [prompt.title]);
+    const handleTitleChange = (newTitle: string) => {
+        onUpdatePrompt(prompt.id, { title: newTitle });
+    };
 
     return (
         <div className={ styles.card }>
             <div className={ styles['card-header'] }>
                 <div className={ styles['title-container'] }>
-                    <h3 
-                        ref={ titleRef }
-                        title={ isTooLong ? prompt.title : '' }
-                    >
-                        { prompt.title }
-                    </h3>
+                    <PromptTitle
+                        displayedTitle={ prompt.title }
+                        onTitleChange={ handleTitleChange }
+                    />
                     <span className={ styles.tokens }>{ prompt.tokenCount }</span>
                 </div>
 
