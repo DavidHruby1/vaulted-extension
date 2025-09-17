@@ -15,11 +15,6 @@ export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps)
     const debounceRef = useRef<number | null>(null);
     const measurerRef = useRef<HTMLSpanElement>(null);
 
-    // Synchronize with props
-    useEffect(() => {
-        setText(displayedTitle);
-    }, [displayedTitle]);
-
     useEffect(() => {
         const promptTitle = titleRef.current;
         if (!promptTitle) return;
