@@ -86,3 +86,7 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+.error-border {
+    border: 2px solid red;
+}
