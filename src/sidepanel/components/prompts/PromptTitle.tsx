@@ -43,27 +43,6 @@ export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps)
         };
     }, [displayedTitle]);
 
-    const finishEditing = () => {
-        onTitleChange(text.trim());
-        setIsEditing(false);
-    };
-
-    const handleTitleEdit = () => setIsEditing(!isEditing);
-
-    const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newText = e.target.value;
-
-        if (newText.length < 40) {
-            setText(newText);
-        }
-    };
-
-    const handleBlur = () => finishEditing();
-
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") finishEditing();
-    };
-
     return (
         <>
             { isEditing ? (
@@ -71,9 +50,17 @@ export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps)
                     className={ styles['title-input'] }
                     type="text"
                     value={ text }
-                    onChange={ handleTextChange }
-                    onBlur={ handleBlur }
-                    onKeyDown={ handleKeyDown }
+                    onChange={ (e) => setText(e.target.value.slice(0, 60)) }
+                    onBlur={ () => {
+                        onTitleChange(text.trim());
+                        setIsEditing(false);
+                    }}
+                    onKeyDown={ (e) => {
+                        if (e.key === "Enter") {
+                            onTitleChange(text.trim());
+                            setIsEditing(false);
+                        }
+                    }}
                     spellCheck={ false }
                     autoFocus
                 />
@@ -82,7 +69,7 @@ export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps)
                     className={ styles['prompt-title'] }
                     ref={ titleRef }
                     title={ isTooLong ? displayedTitle : '' }
-                    onDoubleClick={ handleTitleEdit }
+                    onDoubleClick={ () => setIsEditing(!isEditing) }
                 >
                     { text }
                 </h3>

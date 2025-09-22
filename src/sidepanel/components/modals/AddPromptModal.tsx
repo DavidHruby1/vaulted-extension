@@ -67,7 +67,8 @@ export const AddPromptModal = ({ isOpen, onClose, onAddPrompt }: PromptModalProp
                             className={ styles['add-prompt-input'] }
                             type="text"
                             value={ title }
-                            onChange={ e => setTitle(e.target.value) }
+                            onChange={ (e) => setTitle(e.target.value.slice(0, 60)) }
+                            maxLength={60}
                         />
                     </label>
 
@@ -77,7 +78,8 @@ export const AddPromptModal = ({ isOpen, onClose, onAddPrompt }: PromptModalProp
                             className={ styles['add-prompt-input'] }
                             type="text"
                             value={ tagInput }
-                            onChange={ e => setTagInput(e.target.value) }
+                            onChange={ (e) => setTagInput(e.target.value.slice(0, 40)) }
+                            maxLength={40}
                         />
                     </label>
 
@@ -85,9 +87,10 @@ export const AddPromptModal = ({ isOpen, onClose, onAddPrompt }: PromptModalProp
                         className={`${styles['add-prompt-textarea']} ${hasError ? styles['error-border'] : '' }`}
                         rows={6}
                         value={ text }
-                        onChange={ e => setText(e.target.value) }
+                        onChange={ (e) => setText(e.target.value.slice(0, 999999)) }
                         placeholder='Enter your prompt here...'
                         required
+                        maxLength={999999}
                     />
 
                     <button type="submit" className={ styles['submit-btn'] }>
