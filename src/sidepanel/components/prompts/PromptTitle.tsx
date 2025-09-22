@@ -14,8 +14,10 @@ export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps)
     const debounceRef = useRef<number | null>(null);
 
     useEffect(() => {
-        setText(displayedTitle);
-    }, [displayedTitle]);
+        if (!isEditing) {
+            setText(displayedTitle);
+        }
+    }, [displayedTitle, isEditing]);
 
     useEffect(() => {
         const promptTitle = titleRef.current;

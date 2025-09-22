@@ -1,3 +1,7 @@
+/*
+repomix --ignore ".vscode, dist, node_modules, src/assets, .gitignore, eslint.config.js, LICENSE, package-lock.json, package.json, tsconfig.app.json, tsconfig.json, tsconfig.node.json, README.md"
+*/
+
 import './index.css'
 import { useState } from 'react';
 import { Layout } from '@components/layout/Layout';
@@ -12,14 +16,15 @@ function App() {
 
     const handleUpdatePrompt = (id: string, updates: Partial<Prompt>) => {
         setPrompts(prevPrompts => {
-            if (updates.title !== undefined && updates.title.trim() === '') {
-                const otherPrompts = prevPrompts.filter(p => p.id !== id);
-                const newTitleNumber = getNextTitleNumber(otherPrompts);
-                updates.title = `Title_${newTitleNumber}`;
+            const newUpdates = {...updates};
+
+            if (newUpdates.title !== undefined && newUpdates.title.trim() === '') {
+                const newTitleNumber = getNextTitleNumber(prevPrompts, id);
+                newUpdates.title = `Title_${newTitleNumber}`;
             }
 
             return prevPrompts.map(p => 
-                p.id === id ? { ...p, ...updates } : p
+                p.id === id ? { ...p, ...newUpdates } : p
             );
         });
     };
