@@ -2,6 +2,8 @@ import styles from './PromptCard.module.css';
 import type { Prompt } from '@/shared/types';
 import { Copy, Syringe, EllipsisVertical } from 'lucide-react';
 import { PromptTitle } from '@components/prompts/PromptTitle';
+import { useState } from 'react';
+import { Tooltip } from '@components/ui/Tooltip';
 
 interface PromptCardProps {
     prompt: Prompt;
@@ -10,6 +12,19 @@ interface PromptCardProps {
 }
 
 export const PromptCard = ({ prompt, onUpdatePrompt }: PromptCardProps) => {
+    const [isCopied, setIsCopied] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const handlePromptCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(prompt.text);
+            setIsCopied(true);
+            setTimeout(() => setIsCopied(false), 2000);
+        } catch (err) {
+            setError('Copy failed')
+            setTimeout(() => setError(null), 2000);
+        }
+    }
 
     const handleTitleChange = (newTitle: string) => {
         onUpdatePrompt(prompt.id, { title: newTitle });
@@ -27,13 +42,19 @@ export const PromptCard = ({ prompt, onUpdatePrompt }: PromptCardProps) => {
                 </div>
 
                 <div className={ styles.actions }>
-                    <button>
+                    <button
+                        type="button"
+                        aria-label="Copy"
+                        onClick={ handlePromptCopy }
+                    >
                         <Copy color="white" size={24} strokeWidth={2.25} />
+                        { isCopied && <Tooltip tooltipText="Copied" />}
+                        { error && <Tooltip tooltipText={ error } />}
                     </button>
-                    <button>
+                    <button type="button" aria-label="Inject">
                         <Syringe color="white" size={24} strokeWidth={2.25} />
                     </button>
-                    <button>
+                    <button type="button" aria-label="More">
                         <EllipsisVertical color="white" size={24} strokeWidth={2.25} />
                     </button>
                 </div>
