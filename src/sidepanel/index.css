@@ -45,6 +45,8 @@ transition & animation (transition, transform, animation, ...)
     --filter-btn-bg: rgba(0, 0, 0, 0.1);
     --close-btn-bg: #DB0000;
     --close-btn-border: #8D0202;
+    --color-success: #22C55E;
+    --color-error: #DC2626;
 
     /* === Spacing === */
     --spacing-xs: 0.25rem;
