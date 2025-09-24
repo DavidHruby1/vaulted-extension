@@ -12,19 +12,31 @@ interface PromptCardProps {
 }
 
 export const PromptCard = ({ prompt, onUpdatePrompt }: PromptCardProps) => {
-    const [isCopied, setIsCopied] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const [copyStatus, setCopyStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
     const handlePromptCopy = async () => {
         try {
             await navigator.clipboard.writeText(prompt.text);
-            setIsCopied(true);
-            setTimeout(() => setIsCopied(false), 2000);
+            setCopyStatus('success');
         } catch (err) {
-            setError('Copy failed')
-            setTimeout(() => setError(null), 2000);
+            console.error('Failed to copy: ', err);
+            setCopyStatus('error');
+        } finally {
+            setTimeout(() => setCopyStatus('idle'), 2000);
         }
-    }
+    };
+
+    // Helper function for getting copyStatus color
+    const getIconColor = () => {
+        switch(copyStatus) {
+            case 'success':
+                return 'var(--color-success)';
+            case 'error':
+                return 'var(--color-error)';
+            default:
+                return 'white';
+        }
+    };
 
     const handleTitleChange = (newTitle: string) => {
         onUpdatePrompt(prompt.id, { title: newTitle });
@@ -47,9 +59,12 @@ export const PromptCard = ({ prompt, onUpdatePrompt }: PromptCardProps) => {
                         aria-label="Copy"
                         onClick={ handlePromptCopy }
                     >
-                        <Copy color="white" size={24} strokeWidth={2.25} />
-                        { isCopied && <Tooltip tooltipText="Copied" />}
-                        { error && <Tooltip tooltipText={ error } />}
+                        <Copy
+                            color={ getIconColor() }
+                            size={24}
+                            strokeWidth={2.25}
+                            style={{ transition: 'color 150ms ease' }}
+                        />
                     </button>
                     <button type="button" aria-label="Inject">
                         <Syringe color="white" size={24} strokeWidth={2.25} />
