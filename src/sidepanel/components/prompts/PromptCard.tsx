@@ -3,7 +3,6 @@ import type { Prompt } from '@/shared/types';
 import { Copy, Syringe, EllipsisVertical } from 'lucide-react';
 import { PromptTitle } from '@components/prompts/PromptTitle';
 import { useState } from 'react';
-import { Tooltip } from '@components/ui/Tooltip';
 
 interface PromptCardProps {
     prompt: Prompt;
@@ -21,10 +20,21 @@ export const PromptCard = ({ prompt, onUpdatePrompt }: PromptCardProps) => {
         } catch (err) {
             console.error('Failed to copy: ', err);
             setCopyStatus('error');
-        } finally {
-            setTimeout(() => setCopyStatus('idle'), 2000);
         }
     };
+
+    // useEffect hook to ensure no memory leaks because of the timer
+    useEffect(() => {
+        if (copyStatus === 'idle') return;
+
+        const timerId = setTimeout(() => {
+            setCopyStatus('idle');
+        }, 1000);
+
+        return () => {
+            clearTimeout(timerId);
+        };
+    }, [copyStatus]);
 
     // Helper function for getting copyStatus color
     const getIconColor = () => {
