@@ -56,7 +56,7 @@ export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps)
                         setIsEditing(false);
                     }}
                     onKeyDown={ (e) => {
-                        if (e.key === "Enter") {
+                        if (e.key === 'Enter') {
                             onTitleChange(text.trim());
                             setIsEditing(false);
                         }
@@ -69,7 +69,10 @@ export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps)
                     className={ styles['prompt-title'] }
                     ref={ titleRef }
                     title={ isTooLong ? displayedTitle : '' }
-                    onDoubleClick={ () => setIsEditing(!isEditing) }
+                    onDoubleClick={ (e) => {
+                        e.preventDefault;
+                        setIsEditing(!isEditing); 
+                    }}
                 >
                     { text }
                 </h3>

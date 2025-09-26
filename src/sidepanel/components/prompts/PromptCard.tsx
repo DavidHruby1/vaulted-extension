@@ -2,7 +2,8 @@ import styles from './PromptCard.module.css';
 import type { Prompt } from '@/shared/types';
 import { Copy, Syringe, EllipsisVertical } from 'lucide-react';
 import { PromptTitle } from '@components/prompts/PromptTitle';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { PromptText } from './PromptText';
 
 interface PromptCardProps {
     prompt: Prompt;
@@ -52,6 +53,10 @@ export const PromptCard = ({ prompt, onUpdatePrompt }: PromptCardProps) => {
         onUpdatePrompt(prompt.id, { title: newTitle });
     };
 
+    const handleTextChange = (newText: string) => {
+        onUpdatePrompt(prompt.id, { text: newText });
+    };
+
     return (
         <div className={ styles.card }>
             <div className={ styles['card-header'] }>
@@ -86,9 +91,10 @@ export const PromptCard = ({ prompt, onUpdatePrompt }: PromptCardProps) => {
             </div>
 
             <div className={ styles['card-body'] }>
-                <p className={ styles['card-text'] }>
-                    { prompt.text }
-                </p>
+                <PromptText 
+                    promptText={ prompt.text }
+                    onTextChange={ handleTextChange }
+                />
             </div>
         </div>
     );

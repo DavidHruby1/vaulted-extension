@@ -5,7 +5,7 @@
     border: 3px solid var(--primary);
     border-radius: var(--br);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .card:hover {
@@ -54,9 +54,11 @@
 
 .card-body {
     width: 100%;
-    height: calc(100% - 40px);
-    padding: var(--spacing-sm);
+    height: 100%;
+    max-height: 134px;
+    padding-inline: var(--spacing-sm);
     background-color: white;
+    overflow: hidden;
 }
 
 .title-container {
