@@ -6,6 +6,10 @@
     color: var(--text-light);
     cursor: pointer;
     text-overflow: ellipsis;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .title-input {

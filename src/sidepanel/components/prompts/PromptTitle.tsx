@@ -69,10 +69,7 @@ export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps)
                     className={ styles['prompt-title'] }
                     ref={ titleRef }
                     title={ isTooLong ? displayedTitle : '' }
-                    onDoubleClick={ (e) => {
-                        e.preventDefault;
-                        setIsEditing(true); 
-                    }}
+                    onDoubleClick={ () => setIsEditing(true) }
                 >
                     { text }
                 </h3>

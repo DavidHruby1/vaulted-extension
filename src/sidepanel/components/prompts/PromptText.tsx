@@ -61,10 +61,7 @@ export const PromptText = ({ promptText, onTextChange }: PromptTextProps) => {
             ) : (
                 <p
                     className={styles['prompt-text']}
-                    onDoubleClick={ (e) => {
-                        e.preventDefault;
-                        setIsEditing(true); 
-                    }}
+                    onDoubleClick={ () => setIsEditing(true) }
                 >
                     { text }
                 </p>
