@@ -57,6 +57,7 @@
     height: 100%;
     max-height: 134px;
     padding-inline: var(--spacing-sm);
+    padding-block: var(--spacing-xs);
     background-color: white;
     overflow: hidden;
 }

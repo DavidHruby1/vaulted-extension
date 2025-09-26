@@ -71,7 +71,7 @@ export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps)
                     title={ isTooLong ? displayedTitle : '' }
                     onDoubleClick={ (e) => {
                         e.preventDefault;
-                        setIsEditing(!isEditing); 
+                        setIsEditing(true); 
                     }}
                 >
                     { text }
