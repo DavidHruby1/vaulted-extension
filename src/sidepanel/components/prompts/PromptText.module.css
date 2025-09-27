@@ -32,3 +32,7 @@
     overflow-y: auto;
     field-sizing: content;
 }
+
+.error-border {
+    outline-color: var(--color-error);
+}

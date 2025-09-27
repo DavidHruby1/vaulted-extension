@@ -84,7 +84,7 @@ export const AddPromptModal = ({ isOpen, onClose, onAddPrompt }: PromptModalProp
                     </label>
 
                     <textarea
-                        className={`${styles['add-prompt-textarea']} ${hasError ? styles['error-border'] : '' }`}
+                        className={`${styles['add-prompt-textarea']} ${hasError ? styles['error-border'] : ''}`}
                         rows={6}
                         value={ text }
                         onChange={ (e) => setText(e.target.value.slice(0, 999999)) }

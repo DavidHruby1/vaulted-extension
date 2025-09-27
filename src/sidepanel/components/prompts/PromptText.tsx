@@ -9,6 +9,7 @@ interface PromptTextProps {
 export const PromptText = ({ promptText, onTextChange }: PromptTextProps) => {
     const [text, setText] = useState(promptText);
     const [isEditing, setIsEditing] = useState(false);
+    const [hasError, setHasError] = useState(false);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
@@ -29,32 +30,40 @@ export const PromptText = ({ promptText, onTextChange }: PromptTextProps) => {
             
             textarea.style.height = 'auto';
             textarea.style.height = `${Math.min(textarea.scrollHeight, 120)}px`;
-
-            /*textarea.style.height = 'auto';
-            const newHeight = Math.min(textarea.scrollHeight, 200);
-            textarea.style.height = `${newHeight}px`;*/
         }
     }, [isEditing, text]);
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            
+            if (text.length === 0) {
+                setHasError(true);
+            } else {
+                setHasError(false);
+                onTextChange(text);
+                setIsEditing(false);
+            }
+        }
+    }
 
     return (
         <>
             {isEditing ? (
                 <textarea
                     ref={ textareaRef }
-                    className={ styles['text-area'] }
+                    className={`${styles['text-area']} ${hasError ? styles['error-border'] : ''}`}
                     value={ text }
-                    onChange={(e) => setText(e.target.value)}
+                    onChange={(e) => {
+                        setHasError(false);
+                        setText(e.target.value);
+                    }}
                     onBlur={ () => {
                         onTextChange(text);
                         setIsEditing(false);
+                        setHasError(false);
                     }}
-                    onKeyDown={ (e) => {
-                        if (e.key === 'Enter' && !e.shiftKey) {
-                            e.preventDefault();
-                            onTextChange(text);
-                            setIsEditing(false);
-                        }
-                    }}
+                    onKeyDown={ handleKeyDown }
                     spellCheck={ false }
                     autoFocus
                 />
