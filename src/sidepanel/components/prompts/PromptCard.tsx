@@ -8,10 +8,13 @@ import { PromptText } from './PromptText';
 interface PromptCardProps {
     prompt: Prompt;
     onUpdatePrompt: (id: string, updates: Partial<Prompt>) => void,
-    nextTitleNumber: number;
+    nextTitleNumber: number,
+    isEditing: boolean,
+    onStartEditing: (id: string) => void,
+    onStopEditing: () => void;
 }
 
-export const PromptCard = ({ prompt, onUpdatePrompt }: PromptCardProps) => {
+export const PromptCard = ({ prompt, onUpdatePrompt, isEditing, onStartEditing, onStopEditing }: PromptCardProps) => {
     const [copyStatus, setCopyStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
     const handlePromptCopy = async () => {
@@ -55,6 +58,7 @@ export const PromptCard = ({ prompt, onUpdatePrompt }: PromptCardProps) => {
 
     const handleTextChange = (newText: string) => {
         onUpdatePrompt(prompt.id, { text: newText });
+        onStopEditing();
     };
 
     return (
@@ -94,6 +98,8 @@ export const PromptCard = ({ prompt, onUpdatePrompt }: PromptCardProps) => {
                 <PromptText 
                     promptText={ prompt.text }
                     onTextChange={ handleTextChange }
+                    isEditing={ isEditing }
+                    onStartEditing={ () => onStartEditing(prompt.id) }
                 />
             </div>
         </div>

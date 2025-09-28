@@ -76,6 +76,10 @@
     color: var(--text-dark);
 }
 
+.submit-btn:focus span {
+    text-decoration: underline;
+}
+
 .submit-text {
     font-size: var(--fs-semi-medium);
     font-weight: var(--fw-semibold);

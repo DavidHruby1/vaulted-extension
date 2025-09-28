@@ -3,12 +3,13 @@ import styles from './PromptText.module.css';
 
 interface PromptTextProps {
     promptText: string;
-    onTextChange: (newText: string) => void;
+    onTextChange: (newText: string) => void,
+    isEditing: boolean,
+    onStartEditing: () => void;
 }
 
-export const PromptText = ({ promptText, onTextChange }: PromptTextProps) => {
+export const PromptText = ({ promptText, onTextChange, isEditing, onStartEditing }: PromptTextProps) => {
     const [text, setText] = useState(promptText);
-    const [isEditing, setIsEditing] = useState(false);
     const [hasError, setHasError] = useState(false);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -39,10 +40,10 @@ export const PromptText = ({ promptText, onTextChange }: PromptTextProps) => {
             
             if (text.length === 0) {
                 setHasError(true);
+                textareaRef.current?.focus();
             } else {
                 setHasError(false);
                 onTextChange(text);
-                setIsEditing(false);
             }
         }
     };
@@ -50,9 +51,9 @@ export const PromptText = ({ promptText, onTextChange }: PromptTextProps) => {
     const handleOnBlur = () => {
         if (text.trim().length === 0) {
             setHasError(true);
+            textareaRef.current?.focus();
         } else {
             onTextChange(text);
-            setIsEditing(false);
             setHasError(false);
         }
     };
@@ -76,7 +77,7 @@ export const PromptText = ({ promptText, onTextChange }: PromptTextProps) => {
             ) : (
                 <p
                     className={styles['prompt-text']}
-                    onDoubleClick={ () => setIsEditing(true) }
+                    onDoubleClick={ onStartEditing }
                 >
                     { text }
                 </p>
