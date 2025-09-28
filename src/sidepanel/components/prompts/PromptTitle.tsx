@@ -3,13 +3,14 @@ import styles from './PromptTitle.module.css'
 
 interface PromptTitleProps {
     displayedTitle: string,
-    onTitleChange: (newTitle: string) => void;
+    onTitleChange: (newTitle: string) => void,
+    isEditing: boolean,
+    onStartEditing: () => void;
 }
 
-export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps) => {
+export const PromptTitle = ({ displayedTitle, onTitleChange, isEditing, onStartEditing }: PromptTitleProps) => {
     const [text, setText] = useState(displayedTitle);
     const [isTooLong, setIsTooLong] = useState(false);
-    const [isEditing, setIsEditing] = useState(false);
     const titleRef = useRef<HTMLHeadingElement>(null);
     const debounceRef = useRef<number | null>(null);
 
@@ -53,12 +54,10 @@ export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps)
                     onChange={ (e) => setText(e.target.value.slice(0, 60)) }
                     onBlur={ () => {
                         onTitleChange(text.trim());
-                        setIsEditing(false);
                     }}
                     onKeyDown={ (e) => {
                         if (e.key === 'Enter') {
                             onTitleChange(text.trim());
-                            setIsEditing(false);
                         }
                     }}
                     spellCheck={ false }
@@ -69,7 +68,7 @@ export const PromptTitle = ({ displayedTitle, onTitleChange }: PromptTitleProps)
                     className={ styles['prompt-title'] }
                     ref={ titleRef }
                     title={ isTooLong ? displayedTitle : '' }
-                    onDoubleClick={ () => setIsEditing(true) }
+                    onDoubleClick={ onStartEditing }
                 >
                     { text }
                 </h3>

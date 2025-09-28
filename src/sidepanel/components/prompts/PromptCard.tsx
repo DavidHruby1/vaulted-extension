@@ -54,6 +54,7 @@ export const PromptCard = ({ prompt, onUpdatePrompt, isEditing, onStartEditing, 
 
     const handleTitleChange = (newTitle: string) => {
         onUpdatePrompt(prompt.id, { title: newTitle });
+        onStopEditing();
     };
 
     const handleTextChange = (newText: string) => {
@@ -68,6 +69,8 @@ export const PromptCard = ({ prompt, onUpdatePrompt, isEditing, onStartEditing, 
                     <PromptTitle
                         displayedTitle={ prompt.title }
                         onTitleChange={ handleTitleChange }
+                        isEditing={ isEditing }
+                        onStartEditing={ () => onStartEditing(prompt.id) }
                     />
                     <span className={ styles.tokens }>{ prompt.tokenCount }</span>
                 </div>
