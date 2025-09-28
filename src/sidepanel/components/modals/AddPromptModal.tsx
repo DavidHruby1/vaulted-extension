@@ -63,12 +63,13 @@ export const AddPromptModal = ({ isOpen, onClose, onAddPrompt }: PromptModalProp
                 <form className={ styles['add-prompt-form'] } onSubmit={ handleSubmit }>
                     <label className={ styles['add-prompt-label'] }>
                         Title
-                        <input 
+                        <input
                             className={ styles['add-prompt-input'] }
                             type="text"
                             value={ title }
                             onChange={ (e) => setTitle(e.target.value.slice(0, 60)) }
                             maxLength={60}
+                            autoFocus
                         />
                     </label>
 

@@ -45,7 +45,17 @@ export const PromptText = ({ promptText, onTextChange }: PromptTextProps) => {
                 setIsEditing(false);
             }
         }
-    }
+    };
+
+    const handleOnBlur = () => {
+        if (text.trim().length === 0) {
+            setHasError(true);
+        } else {
+            onTextChange(text);
+            setIsEditing(false);
+            setHasError(false);
+        }
+    };
 
     return (
         <>
@@ -58,11 +68,7 @@ export const PromptText = ({ promptText, onTextChange }: PromptTextProps) => {
                         setHasError(false);
                         setText(e.target.value);
                     }}
-                    onBlur={ () => {
-                        onTextChange(text);
-                        setIsEditing(false);
-                        setHasError(false);
-                    }}
+                    onBlur={ handleOnBlur }
                     onKeyDown={ handleKeyDown }
                     spellCheck={ false }
                     autoFocus
