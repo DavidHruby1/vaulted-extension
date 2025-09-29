@@ -5,10 +5,11 @@ interface PromptTextProps {
     promptText: string;
     onTextChange: (newText: string) => void,
     isEditing: boolean,
-    onStartEditing: () => void;
+    onStartEditing: () => void,
+    onValidationChange: (isValid: boolean) => void;
 }
 
-export const PromptText = ({ promptText, onTextChange, isEditing, onStartEditing }: PromptTextProps) => {
+export const PromptText = ({ promptText, onTextChange, isEditing, onStartEditing, onValidationChange }: PromptTextProps) => {
     const [text, setText] = useState(promptText);
     const [hasError, setHasError] = useState(false);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -16,6 +17,8 @@ export const PromptText = ({ promptText, onTextChange, isEditing, onStartEditing
     useEffect(() => {
         if (!isEditing) {
             setText(promptText);
+            setHasError(false);
+            onValidationChange(true);
         }
     }, [promptText, isEditing]);
 
@@ -34,29 +37,37 @@ export const PromptText = ({ promptText, onTextChange, isEditing, onStartEditing
         }
     }, [isEditing, text]);
 
+    // Help function for handling text update
+    const handleTextUpdate = (newText: string) => {
+        const isValid = newText.trim().length > 0;
+        setHasError(!isValid);
+        onValidationChange(isValid);
+        
+        if (isValid) {
+            onTextChange(newText);
+        } else {
+            textareaRef.current?.focus();
+        }
+    };
+
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            
-            if (text.length === 0) {
-                setHasError(true);
-                textareaRef.current?.focus();
-            } else {
-                setHasError(false);
-                onTextChange(text);
-            }
+            handleTextUpdate(text);    
         }
     };
 
     const handleOnBlur = () => {
-        if (text.trim().length === 0) {
-            setHasError(true);
-            textareaRef.current?.focus();
-        } else {
-            onTextChange(text);
-            setHasError(false);
-        }
+        handleTextUpdate(text);
     };
+
+    const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const newText = e.target.value;
+        setText(newText);
+        const isValid = newText.trim().length > 0;
+        setHasError(!isValid);
+        onValidationChange(isValid);
+    }
 
     return (
         <>
@@ -65,10 +76,7 @@ export const PromptText = ({ promptText, onTextChange, isEditing, onStartEditing
                     ref={ textareaRef }
                     className={`${styles['text-area']} ${hasError ? styles['error-border'] : ''}`}
                     value={ text }
-                    onChange={(e) => {
-                        setHasError(false);
-                        setText(e.target.value);
-                    }}
+                    onChange={ handleOnChange }
                     onBlur={ handleOnBlur }
                     onKeyDown={ handleKeyDown }
                     spellCheck={ false }

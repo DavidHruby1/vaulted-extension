@@ -9,12 +9,14 @@ interface PromptCardProps {
     prompt: Prompt;
     onUpdatePrompt: (id: string, updates: Partial<Prompt>) => void,
     nextTitleNumber: number,
-    isEditing: boolean,
-    onStartEditing: (id: string) => void,
-    onStopEditing: () => void;
+    isTitleEditing: boolean,
+    isTextEditing: boolean,
+    onStartEditing: (id: string, field: 'title' | 'text') => void,
+    onStopEditing: () => void,
+    onValidationChange: (isValid: boolean) => void;
 }
 
-export const PromptCard = ({ prompt, onUpdatePrompt, isEditing, onStartEditing, onStopEditing }: PromptCardProps) => {
+export const PromptCard = ({ prompt, onUpdatePrompt, isTitleEditing, isTextEditing, onStartEditing, onStopEditing, onValidationChange }: PromptCardProps) => {
     const [copyStatus, setCopyStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
     const handlePromptCopy = async () => {
@@ -69,8 +71,8 @@ export const PromptCard = ({ prompt, onUpdatePrompt, isEditing, onStartEditing, 
                     <PromptTitle
                         displayedTitle={ prompt.title }
                         onTitleChange={ handleTitleChange }
-                        isEditing={ isEditing }
-                        onStartEditing={ () => onStartEditing(prompt.id) }
+                        isEditing={ isTitleEditing }
+                        onStartEditing={ () => onStartEditing(prompt.id, 'title') }
                     />
                     <span className={ styles.tokens }>{ prompt.tokenCount }</span>
                 </div>
@@ -101,8 +103,9 @@ export const PromptCard = ({ prompt, onUpdatePrompt, isEditing, onStartEditing, 
                 <PromptText 
                     promptText={ prompt.text }
                     onTextChange={ handleTextChange }
-                    isEditing={ isEditing }
-                    onStartEditing={ () => onStartEditing(prompt.id) }
+                    isEditing={ isTextEditing }
+                    onStartEditing={ () => onStartEditing(prompt.id, 'text') }
+                    onValidationChange={ onValidationChange }
                 />
             </div>
         </div>
