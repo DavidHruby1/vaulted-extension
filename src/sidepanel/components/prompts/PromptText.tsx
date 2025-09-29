@@ -12,7 +12,11 @@ interface PromptTextProps {
 export const PromptText = ({ promptText, onTextChange, isEditing, onStartEditing, onValidationChange }: PromptTextProps) => {
     const [text, setText] = useState(promptText);
     const [hasError, setHasError] = useState(false);
-    const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const [isOverflowing, setIsOverflowing] = useState(false);
+    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+    const pRef = useRef<HTMLParagraphElement | null>(null);
+    const spanRef = useRef<HTMLSpanElement | null>(null);
+    const debounceRef = useRef<number | null>(null);
 
     useEffect(() => {
         if (!isEditing) {
@@ -36,6 +40,31 @@ export const PromptText = ({ promptText, onTextChange, isEditing, onStartEditing
             textarea.style.height = `${Math.min(textarea.scrollHeight, 120)}px`;
         }
     }, [isEditing, text]);
+
+    useEffect(() => {
+        const pElement = pRef.current;
+        const spanElement = spanRef.current;
+        if (!pElement || !spanElement) return;
+
+        const checkOverflow = () => {
+            const hasOverflow = spanElement.scrollHeight > pElement.clientHeight;
+            setIsOverflowing(hasOverflow);
+        };
+
+        checkOverflow();
+
+        const handleResize = () => {
+            if (debounceRef.current) clearTimeout(debounceRef.current);
+            debounceRef.current = window.setTimeout(checkOverflow, 200);
+        };
+        
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            if (debounceRef.current) clearTimeout(debounceRef.current);
+            window.removeEventListener("resize", handleResize);
+        };
+    }, [text]); 
 
     // Help function for handling text update
     const handleTextUpdate = (newText: string) => {
@@ -84,10 +113,11 @@ export const PromptText = ({ promptText, onTextChange, isEditing, onStartEditing
                 />
             ) : (
                 <p
-                    className={styles['prompt-text']}
+                    ref={pRef}
+                    className={`${styles['prompt-text']} ${ isOverflowing ? styles.overflowing : ''}`}
                     onDoubleClick={ onStartEditing }
                 >
-                    { text }
+                    <span ref={ spanRef }>{ text }</span>
                 </p>
             )}
         </>
