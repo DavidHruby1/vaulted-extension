@@ -2,7 +2,7 @@ import styles from './PromptCard.module.css';
 import type { Prompt } from '@/shared/types';
 import { Copy, Syringe, EllipsisVertical } from 'lucide-react';
 import { PromptTitle } from '@components/prompts/PromptTitle';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { PromptText } from './PromptText';
 
 interface PromptCardProps {
@@ -13,13 +13,17 @@ interface PromptCardProps {
     isTextEditing: boolean,
     onStartEditing: (id: string, field: 'title' | 'text') => void,
     onStopEditing: () => void,
-    onValidationChange: (isValid: boolean) => void;
+    onValidationChange: (isValid: boolean) => void,
+    isExpanded: boolean,
+    onToggleExpand: () => void;
 }
 
-export const PromptCard = ({ prompt, onUpdatePrompt, isTitleEditing, isTextEditing, onStartEditing, onStopEditing, onValidationChange }: PromptCardProps) => {
+export const PromptCard = ({ prompt, onUpdatePrompt, isTitleEditing, isTextEditing, onStartEditing, onStopEditing, onValidationChange, isExpanded, onToggleExpand }: PromptCardProps) => {
     const [copyStatus, setCopyStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const bodyRef = useRef<HTMLDivElement>(null);
 
-    const handlePromptCopy = async () => {
+    const handlePromptCopy = async (e: React.MouseEvent) => {
+        e.stopPropagation();
         try {
             await navigator.clipboard.writeText(prompt.text);
             setCopyStatus('success');
@@ -28,6 +32,12 @@ export const PromptCard = ({ prompt, onUpdatePrompt, isTitleEditing, isTextEditi
             setCopyStatus('error');
         }
     };
+
+    useEffect(() => {
+        if (!isExpanded && bodyRef.current) {
+            bodyRef.current.scrollTop = 0;
+        }
+    }, [isExpanded]);
 
     // useEffect hook to ensure no memory leaks because of the timer
     useEffect(() => {
@@ -64,8 +74,21 @@ export const PromptCard = ({ prompt, onUpdatePrompt, isTitleEditing, isTextEditi
         onStopEditing();
     };
 
+    const handleCardClick = () => {
+        if (isTextEditing || isTitleEditing) return;
+
+        const target = e.target as HTMLElement;
+        if (target.closest('button') || target.closest('textarea') || target.closest('input')) {
+            return;
+        }
+
+        if (!isTextEditing && !isTitleEditing) {
+            onToggleExpand();
+        }
+    };
+
     return (
-        <div className={ styles.card }>
+        <div id={ prompt.id } className={ styles.card } onClick={ handleCardClick }>
             <div className={ styles['card-header'] }>
                 <div className={ styles['title-container'] }>
                     <PromptTitle
@@ -99,13 +122,14 @@ export const PromptCard = ({ prompt, onUpdatePrompt, isTitleEditing, isTextEditi
                 </div>
             </div>
 
-            <div className={ styles['card-body'] }>
+            <div ref={ bodyRef } className={`${styles['card-body']} ${isExpanded ? styles.expanded : ''}`}>
                 <PromptText 
                     promptText={ prompt.text }
                     onTextChange={ handleTextChange }
                     isEditing={ isTextEditing }
                     onStartEditing={ () => onStartEditing(prompt.id, 'text') }
                     onValidationChange={ onValidationChange }
+                    isExpanded={ isExpanded }
                 />
             </div>
         </div>

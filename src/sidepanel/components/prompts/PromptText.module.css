@@ -1,18 +1,27 @@
 .prompt-text {
     position: relative;
-    white-space: pre-wrap;
     width: 100%;
-    height: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    word-break: break-word;
+    max-height: 134px;
+    overflow: hidden;
     margin: 0;
     padding: 0;
     line-height: 1.2;
+    transition: max-height 300ms ease-in-out;
+
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+}
+
+.prompt-text.expanded {
+    max-height: 201px;
+    overflow: visible;
 }
 
 .prompt-text > span {

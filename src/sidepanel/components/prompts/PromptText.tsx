@@ -6,17 +6,17 @@ interface PromptTextProps {
     onTextChange: (newText: string) => void,
     isEditing: boolean,
     onStartEditing: () => void,
-    onValidationChange: (isValid: boolean) => void;
+    onValidationChange: (isValid: boolean) => void,
+    isExpanded: boolean;
 }
 
-export const PromptText = ({ promptText, onTextChange, isEditing, onStartEditing, onValidationChange }: PromptTextProps) => {
+export const PromptText = ({ promptText, onTextChange, isEditing, onStartEditing, onValidationChange, isExpanded }: PromptTextProps) => {
     const [text, setText] = useState(promptText);
     const [hasError, setHasError] = useState(false);
     const [isOverflowing, setIsOverflowing] = useState(false);
-    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-    const pRef = useRef<HTMLParagraphElement | null>(null);
-    const spanRef = useRef<HTMLSpanElement | null>(null);
-    const debounceRef = useRef<number | null>(null);
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const pRef = useRef<HTMLParagraphElement>(null);
+    const spanRef = useRef<HTMLSpanElement>(null);
 
     useEffect(() => {
         if (!isEditing) {
@@ -47,24 +47,23 @@ export const PromptText = ({ promptText, onTextChange, isEditing, onStartEditing
         if (!pElement || !spanElement) return;
 
         const checkOverflow = () => {
-            const hasOverflow = spanElement.scrollHeight > pElement.clientHeight;
+            const hasOverflow = spanElement.scrollHeight > pElement.clientHeight + 1;
             setIsOverflowing(hasOverflow);
         };
-
-        checkOverflow();
+        
+        const animationFrameId = requestAnimationFrame(checkOverflow);
 
         const handleResize = () => {
-            if (debounceRef.current) clearTimeout(debounceRef.current);
-            debounceRef.current = window.setTimeout(checkOverflow, 200);
+            requestAnimationFrame(checkOverflow);
         };
         
         window.addEventListener("resize", handleResize);
 
         return () => {
-            if (debounceRef.current) clearTimeout(debounceRef.current);
+            cancelAnimationFrame(animationFrameId);
             window.removeEventListener("resize", handleResize);
         };
-    }, [text]); 
+    }, [text, isExpanded]);
 
     // Help function for handling text update
     const handleTextUpdate = (newText: string) => {
@@ -114,7 +113,11 @@ export const PromptText = ({ promptText, onTextChange, isEditing, onStartEditing
             ) : (
                 <p
                     ref={pRef}
-                    className={`${styles['prompt-text']} ${ isOverflowing ? styles.overflowing : ''}`}
+                    className={`
+                        ${styles['prompt-text']}
+                        ${ isOverflowing && !isExpanded ? styles.overflowing : ''}
+                        ${isExpanded ? styles.expanded : ''}
+                    `}
                     onDoubleClick={ onStartEditing }
                 >
                     <span ref={ spanRef }>{ text }</span>
