@@ -74,7 +74,7 @@ export const PromptCard = ({ prompt, onUpdatePrompt, isTitleEditing, isTextEditi
         onStopEditing();
     };
 
-    const handleCardClick = () => {
+    const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (isTextEditing || isTitleEditing) return;
 
         const target = e.target as HTMLElement;
