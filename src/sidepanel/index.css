@@ -45,6 +45,8 @@ transition & animation (transition, transform, animation, ...)
     --filter-btn-bg: rgba(0, 0, 0, 0.1);
     --close-btn-bg: #DB0000;
     --close-btn-border: #8D0202;
+    --color-success: #22C55E;
+    --color-error: #DC2626;
 
     /* === Spacing === */
     --spacing-xs: 0.25rem;
@@ -83,3 +85,32 @@ body {
     background-color: var(--neutral-light);
 }
 
+/* Global styling for scrollbar */
+/* Firefox without ::-webkit-scrollbar */
+@supports not selector(::-webkit-scrollbar) {
+  html, body, * {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db #e3e2e1;
+  }
+}
+
+/* Chromium/Safari with ::-webkit-scrollbar */
+@supports selector(::-webkit-scrollbar) {
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #e3e2e1;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+  }
+  *::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}

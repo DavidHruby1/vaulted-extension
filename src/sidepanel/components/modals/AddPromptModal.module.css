@@ -76,6 +76,10 @@
     color: var(--text-dark);
 }
 
+.submit-btn:focus span {
+    text-decoration: underline;
+}
+
 .submit-text {
     font-size: var(--fs-semi-medium);
     font-weight: var(--fw-semibold);
@@ -85,4 +89,8 @@
 .submit-text:hover {
     cursor: pointer;
     text-decoration: underline;
+}
+
+.error-border {
+    border: 2px solid red;
 }
